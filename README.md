@@ -4,7 +4,7 @@
 
 This technical test is designed to assess your coding skills, attention to detail, and problem-solving ability.  
 
-You are asked to build a simplified timesheet system relevant to CMap.
+You are asked to build a simplified timesheet system with a front-end interface relevant to CMap.
 
 ---
 
@@ -37,6 +37,7 @@ Each timesheet entry should include:
 - Use **in-memory storage** only (e.g., lists, dictionaries). No database.
 - Fully **unit tested**, covering core logic and edge cases.
 - Implemented in **C# (.NET 6 or later)**.
+- Include a **front-end** using either **Razor** or **Blazor** to enable testing of user interactions.
 - Focus on clean, maintainable, and well-structured code.
 
 ---
