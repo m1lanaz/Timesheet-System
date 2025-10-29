@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\models\\timesheet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\models\\timesheet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\controllers\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\controllers\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TimesheetService.cs",
+              "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Services\\TimesheetService.cs",
+              "RelativeDocumentMoniker": "Timesheet\\Components\\Services\\TimesheetService.cs",
+              "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Services\\TimesheetService.cs",
+              "RelativeToolTip": "Timesheet\\Components\\Services\\TimesheetService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T19:46:35.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Program.cs",
+              "RelativeDocumentMoniker": "Timesheet\\Program.cs",
+              "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Program.cs",
+              "RelativeToolTip": "Timesheet\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T19:34:40.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TimesheetController.cs",
+              "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Controllers\\TimesheetController.cs",
+              "RelativeDocumentMoniker": "Timesheet\\Controllers\\TimesheetController.cs",
+              "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Controllers\\TimesheetController.cs",
+              "RelativeToolTip": "Timesheet\\Controllers\\TimesheetController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T19:33:38.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Timesheet.cs",
+              "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Models\\Timesheet.cs",
+              "RelativeDocumentMoniker": "Timesheet\\Components\\Models\\Timesheet.cs",
+              "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Models\\Timesheet.cs",
+              "RelativeToolTip": "Timesheet\\Components\\Models\\Timesheet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T19:24:48.025Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
