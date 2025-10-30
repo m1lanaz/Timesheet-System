@@ -8,11 +8,6 @@ namespace Timesheet.Controllers
     public class TimesheetController : ControllerBase
     {
 
-        [HttpGet]
-        public async Task<ActionResult<List<TimesheetEntry>>> GetAllEntries()
-        {
-
-        }
 
     }
 }

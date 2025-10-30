@@ -20,21 +20,44 @@ namespace Timesheet.Components.Services
             return _entries.TryRemove(id, out _);
         }
 
+
         public List<TimesheetEntry> GetAllEntries() 
         { 
             return _entries.Values.ToList();
         }
 
 
-        public TimesheetEntry? UpdateEntry(Guid id, TimesheetEntry entryToUpdate)
+        public TimesheetEntry? UpdateEntry(Guid id, TimesheetEntry updatedValues)
         {
-            if(_entries.TryGetValue(id.ToString(), out var existingEntry))
+            if (_entries.TryGetValue(id.ToString(), out var existingEntry))
             {
-                entryToUpdate.ID = id;
-                _entries[id.ToString()] = entryToUpdate;
+                if (updatedValues.ProjectID != default)
+                {
+                    existingEntry.ProjectID = updatedValues.ProjectID;
+                }
+
+                if (!string.IsNullOrWhiteSpace(updatedValues.Description))
+                {
+                    existingEntry.Description = updatedValues.Description;
+                }
+
+                if (updatedValues.Hours > 0)
+                {
+                    existingEntry.Hours = updatedValues.Hours;
+                }
+
+                if (updatedValues.Date != default)
+                {
+                    existingEntry.Date = updatedValues.Date;
+                }
+
+                _entries[id.ToString()] = existingEntry;
+
                 return existingEntry;
             }
+
             return null;
         }
+
     }
 }
