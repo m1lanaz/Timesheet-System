@@ -26,10 +26,10 @@ namespace Timesheet.Test.Services
                 Date = DateTime.Today
             };
 
-            TimesheetEntry added = _service.AddEntry(entry);
+            AddEntryResult added = _service.AddEntry(entry);
             List<TimesheetEntry> allEntries = _service.GetAllEntries();
 
-            Assert.Contains(allEntries, e => e.ID == added.ID);
+            Assert.Contains(allEntries, e => e.ID == added.Entry.ID);
         }
 
         //Passes if it adds all entries
@@ -104,6 +104,17 @@ namespace Timesheet.Test.Services
             Assert.Single(allEntries);
         }
 
+        //Passes if it handles null values
+        [Fact]
+        public void AddEmptyEntry()
+        {
+            TimesheetEntry entry = new TimesheetEntry();
 
+            AddEntryResult added = _service.AddEntry(entry);
+            List<TimesheetEntry> allEntries = _service.GetAllEntries();
+
+            Assert.NotNull(added.Entry);
+            Assert.Contains(added.Entry, allEntries);
+        }
     }
 }

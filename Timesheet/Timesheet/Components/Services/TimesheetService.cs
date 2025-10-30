@@ -8,11 +8,30 @@ namespace Timesheet.Components.Services
         private readonly ConcurrentDictionary<string, TimesheetEntry> _entries = new();
 
 
-        public TimesheetEntry AddEntry(TimesheetEntry entry)
+        public AddEntryResult AddEntry(TimesheetEntry entry)
         {
+            //Duplicate check
+           bool anyDuplicates = _entries.Values.Any(e =>
+            e.UserID == entry.UserID &&
+            e.ProjectID == entry.ProjectID &&
+            e.Date == entry.Date);
+
+            if (anyDuplicates)
+            {
+                return new AddEntryResult
+                {
+                    Success = false,
+                    Message = "Duplicate entry found for this user, project, and date."
+                };
+            }
+
             entry.ID = Guid.NewGuid();
             _entries.TryAdd(entry.ID.ToString(), entry);
-            return entry;
+            return new AddEntryResult
+            {
+                Success = false,
+                Entry = entry,
+            };
         }
 
         public bool DeleteEntry(string id)

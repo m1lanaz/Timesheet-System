@@ -26,9 +26,9 @@ namespace Timesheet.Test.Services
                 Date = DateTime.Today
             };
 
-            TimesheetEntry added = _service.AddEntry(entry);
+            AddEntryResult added = _service.AddEntry(entry);
 
-            bool deleted = _service.DeleteEntry(added.ID.ToString());
+            bool deleted = _service.DeleteEntry(added.Entry.ID.ToString());
 
             List<TimesheetEntry> allEntries = _service.GetAllEntries();
 
@@ -36,7 +36,7 @@ namespace Timesheet.Test.Services
         }
 
 
-        //Passes if a fake entry that isn't there
+        //Passes if a fake entry that isn't there is handled well
         [Fact]
         public void DeleteFakeEntry()
         {

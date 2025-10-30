@@ -26,7 +26,7 @@ namespace Timesheet.Test.Services
                 Date = DateTime.Today
             };
 
-            TimesheetEntry added = _service.AddEntry(entry);
+            AddEntryResult added = _service.AddEntry(entry);
 
             var updatedValues = new TimesheetEntry
             {
@@ -35,7 +35,7 @@ namespace Timesheet.Test.Services
             };
 
 
-            TimesheetEntry updated = _service.UpdateEntry(added.ID, updatedValues);
+            TimesheetEntry updated = _service.UpdateEntry(added.Entry.ID, updatedValues);
 
             Assert.Equal(867, updated.ProjectID);
             Assert.Equal(10, updated.Hours);
