@@ -1,4 +1,5 @@
 using Timesheet.Components;
+using Timesheet.Components.Services;
 
 namespace Timesheet
 {
@@ -13,6 +14,8 @@ namespace Timesheet
                 .AddInteractiveServerComponents();
 
             builder.Services.AddControllers();
+
+            builder.Services.AddSingleton<TimesheetService>();
 
             var app = builder.Build();
 
