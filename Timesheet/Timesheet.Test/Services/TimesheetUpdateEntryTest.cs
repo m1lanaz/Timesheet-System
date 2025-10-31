@@ -35,7 +35,7 @@ namespace Timesheet.Test.Services
             };
 
 
-            TimesheetEntry updated = _service.UpdateEntry(added.Entry.ID, updatedValues);
+            TimesheetEntry updated = _service.UpdateEntry(added.Entry.ID.ToString(), updatedValues);
 
             Assert.Equal(867, updated.ProjectID);
             Assert.Equal(10, updated.Hours);
@@ -51,7 +51,7 @@ namespace Timesheet.Test.Services
                 Hours = 10
             };
 
-            TimesheetEntry updated = _service.UpdateEntry(Guid.NewGuid(), updatedValues);
+            TimesheetEntry updated = _service.UpdateEntry("12234", updatedValues);
 
             Assert.Null(updated);
         }
@@ -97,7 +97,7 @@ namespace Timesheet.Test.Services
             };
 
 
-            TimesheetEntry updated = _service.UpdateEntry(entries[0].ID, updatedValues);
+            TimesheetEntry updated = _service.UpdateEntry(entries[0].ID.ToString(), updatedValues);
 
             Assert.Equal(867, entries[0].ProjectID);
             Assert.Equal(10, entries[0].Hours);

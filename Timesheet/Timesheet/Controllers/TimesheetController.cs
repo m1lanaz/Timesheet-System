@@ -29,16 +29,17 @@ namespace Timesheet.Controllers
             var result = _service.AddEntry(entry);
             if (!result.Success)
             {
-                return Conflict(result.Message);
+                return BadRequest(result.Message);
             }
+
 
             return Ok(result.Entry);
         }
 
-        [HttpDelete]
-        public ActionResult DeleteEntry(TimesheetEntry entry) 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteEntry(string id) 
         {
-            bool success = _service.DeleteEntry(entry.ID.ToString());
+            bool success = _service.DeleteEntry(id);
 
             if (success)
             {
@@ -46,18 +47,18 @@ namespace Timesheet.Controllers
             }
             else
             {
-                return Conflict("Issue with deleting entry");
+                return BadRequest("Issue with deleting entry");
             }
         }
 
-        [HttpPut]
-        public ActionResult UpdateEntry(TimesheetEntry entryToUpdate, TimesheetEntry updatedData)
+        [HttpPut("{id}")]
+        public ActionResult UpdateEntry(string id, TimesheetEntry updatedData)
         {
-            TimesheetEntry updatedTimesheetEntry = _service.UpdateEntry(entryToUpdate.ID, updatedData);
+            TimesheetEntry updatedTimesheetEntry = _service.UpdateEntry(id, updatedData);
         
             if( updatedTimesheetEntry == null)
             {
-                return Conflict("Issue with updating entry");
+                return BadRequest("Issue with updating entry");
             }
 
             return Ok(updatedTimesheetEntry);

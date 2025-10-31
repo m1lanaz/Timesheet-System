@@ -26,12 +26,26 @@ namespace Timesheet.Components.Services
             }
 
             entry.ID = Guid.NewGuid();
-            _entries.TryAdd(entry.ID.ToString(), entry);
-            return new AddEntryResult
+            bool added = _entries.TryAdd(entry.ID.ToString(), entry);
+
+            if (added)
             {
-                Success = false,
-                Entry = entry,
-            };
+                return new AddEntryResult
+                {
+                    Success = true,
+                    Entry = entry,
+                };
+            }
+            else
+            {
+                return new AddEntryResult
+                {
+                    Success = false,
+                    Message = "Failed adding entry"
+                };
+            }
+
+
         }
 
         public bool DeleteEntry(string id)
@@ -46,9 +60,9 @@ namespace Timesheet.Components.Services
         }
 
 
-        public TimesheetEntry? UpdateEntry(Guid id, TimesheetEntry updatedValues)
+        public TimesheetEntry? UpdateEntry(string id, TimesheetEntry updatedValues)
         {
-            if (_entries.TryGetValue(id.ToString(), out var existingEntry))
+            if (_entries.TryGetValue(id, out var existingEntry))
             {
                 if (updatedValues.ProjectID != default)
                 {
