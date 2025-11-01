@@ -7,28 +7,20 @@
       "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\pages\\timesheet.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\models\\addentryresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\models\\addentryresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\models\\timesheetentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\models\\timesheetentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\controllers\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\controllers\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\services\\timesheetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -39,12 +31,20 @@
       "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\pages\\error.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\controllers\\timesheetcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|solutionrelative:timesheet.test\\controllers\\timesheetcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\services\\timesheetgetallentriestest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|solutionrelative:timesheet.test\\services\\timesheetgetallentriestest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\timesheet.test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -55,8 +55,12 @@
       "RelativeMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|solutionrelative:timesheet.test\\services\\timesheetaddentrytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\services\\timesheetgetallentriestest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|solutionrelative:timesheet.test\\services\\timesheetgetallentriestest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\controllers\\timesheetcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|solutionrelative:timesheet.test\\controllers\\timesheetcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet\\components\\models\\timesheetentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E808D5F7-CA60-4E1E-A817-64A07E979A3C}|Timesheet\\Timesheet.csproj|solutionrelative:timesheet\\components\\models\\timesheetentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6727C9B5-C234-48BA-97A3-6F45FB473067}|Timesheet.Test\\Timesheet.Test.csproj|c:\\users\\milana\\source\\repos\\timesheet-system\\timesheet\\timesheet.test\\services\\timesheetdeleteentrytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,32 +82,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Timesheet\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\App.razor",
+              "RelativeToolTip": "Timesheet\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-01T13:30:15.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Program.cs",
               "RelativeDocumentMoniker": "Timesheet\\Program.cs",
               "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Program.cs",
               "RelativeToolTip": "Timesheet\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-29T19:34:40.979Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "TimesheetController.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Controllers\\TimesheetController.cs",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Controllers\\TimesheetController.cs",
               "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Controllers\\TimesheetController.cs",
               "RelativeToolTip": "Timesheet\\Components\\Controllers\\TimesheetController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwB8AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T19:33:38.417Z"
+              "WhenOpened": "2025-10-29T19:33:38.417Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -113,39 +131,40 @@
               "RelativeDocumentMoniker": "Timesheet\\Components\\Pages\\Timesheet.razor",
               "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Pages\\Timesheet.razor",
               "RelativeToolTip": "Timesheet\\Components\\Pages\\Timesheet.razor",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAcwBsAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAwH4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-31T16:48:25.898Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\_Imports.razor",
               "RelativeDocumentMoniker": "Timesheet\\Components\\_Imports.razor",
               "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\_Imports.razor",
               "RelativeToolTip": "Timesheet\\Components\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-30T17:49:26.051Z"
+              "WhenOpened": "2025-10-30T17:49:26.051Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TimesheetService.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Services\\TimesheetService.cs",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Services\\TimesheetService.cs",
               "ToolTip": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Services\\TimesheetService.cs",
               "RelativeToolTip": "Timesheet\\Components\\Services\\TimesheetService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-29T19:46:35.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "Error.razor",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Pages\\Error.razor",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Pages\\Error.razor",
@@ -153,11 +172,12 @@
               "RelativeToolTip": "Timesheet\\Components\\Pages\\Error.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-31T16:47:54.747Z"
+              "WhenOpened": "2025-10-31T16:47:54.747Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Weather.razor",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Pages\\Weather.razor",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Pages\\Weather.razor",
@@ -165,11 +185,12 @@
               "RelativeToolTip": "Timesheet\\Components\\Pages\\Weather.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-31T16:47:05.908Z"
+              "WhenOpened": "2025-10-31T16:47:05.908Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Layout\\NavMenu.razor",
@@ -177,11 +198,12 @@
               "RelativeToolTip": "Timesheet\\Components\\Layout\\NavMenu.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-31T17:05:47.898Z"
+              "WhenOpened": "2025-10-31T17:05:47.898Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AddEntryResult.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Models\\AddEntryResult.cs",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Models\\AddEntryResult.cs",
@@ -194,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "TimesheetControllerTest.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet.Test\\Controllers\\TimesheetControllerTest.cs",
               "RelativeDocumentMoniker": "Timesheet.Test\\Controllers\\TimesheetControllerTest.cs",
@@ -202,7 +224,8 @@
               "RelativeToolTip": "Timesheet.Test\\Controllers\\TimesheetControllerTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T19:18:56.347Z"
+              "WhenOpened": "2025-10-30T19:18:56.347Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -214,11 +237,12 @@
               "RelativeToolTip": "Timesheet.Test\\Services\\TimesheetAddEntryTests.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAgwEQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T20:29:13.576Z"
+              "WhenOpened": "2025-10-29T20:29:13.576Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 10,
               "Title": "TimesheetGetAllEntriesTest.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet.Test\\Services\\TimesheetGetAllEntriesTest.cs",
               "RelativeDocumentMoniker": "Timesheet.Test\\Services\\TimesheetGetAllEntriesTest.cs",
@@ -226,7 +250,8 @@
               "RelativeToolTip": "Timesheet.Test\\Services\\TimesheetGetAllEntriesTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T16:31:59.436Z"
+              "WhenOpened": "2025-10-30T16:31:59.436Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -238,11 +263,12 @@
               "RelativeToolTip": "Timesheet.Test\\Timesheet.Test.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-30T13:29:09.617Z"
+              "WhenOpened": "2025-10-30T13:29:09.617Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "TimesheetDeleteEntryTest.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet.Test\\Services\\TimesheetDeleteEntryTest.cs",
               "RelativeDocumentMoniker": "Timesheet.Test\\Services\\TimesheetDeleteEntryTest.cs",
@@ -254,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "TimesheetUpdateEntryTest.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet.Test\\Services\\TimesheetUpdateEntryTest.cs",
               "RelativeDocumentMoniker": "Timesheet.Test\\Services\\TimesheetUpdateEntryTest.cs",
@@ -266,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Timesheet.csproj",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Timesheet.csproj",
               "RelativeDocumentMoniker": "Timesheet\\Timesheet.csproj",
@@ -299,7 +325,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "TimesheetEntry.cs",
               "DocumentMoniker": "C:\\Users\\Milana\\source\\repos\\Timesheet-System\\Timesheet\\Timesheet\\Components\\Models\\TimesheetEntry.cs",
               "RelativeDocumentMoniker": "Timesheet\\Components\\Models\\TimesheetEntry.cs",

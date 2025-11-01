@@ -1,8 +1,9 @@
 ﻿@inject HttpClient Http
-
+@inject IJSRuntime JS
 @page "/timesheet"
-@using global::Timesheet.Components.Models
-@attribute [StreamRendering]
+@using global::Timesheet.Components.Models;
+@rendermode InteractiveServer
+
 
 <PageTitle>Timesheet</PageTitle>
 
@@ -14,7 +15,49 @@
 }
 else
 {
-    <button>Add entry</button>
+
+
+    <h3 @onclick="ToggleAddEntryDisplay">Add entry <span class="dropdown">@(_showAddEntryForm ? "▲" : "▼")</span></h3>
+
+
+    <div class="AddEntryForm" style="@(_showAddEntryForm ? "display:block;" : "display:none;")">
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; flex-direction: column;">
+                <label>Date:</label>
+                <input type="date" @bind="newEntry.Date" />
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label>UserID:</label>
+                <input type="number" @bind="newEntry.UserID" />
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label>ProjectID:</label>
+                <input type="number" @bind="newEntry.ProjectID" />
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label>Hours:</label>
+                <input type="number" min="0" step=".01"  @bind="newEntry.Hours"/>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label>Description:</label>
+                <input type="text" @bind="newEntry.Description" />
+            </div>
+        </div>
+
+        <br />
+
+        <button class="btn btn-primary" @onclick="AddEntry">
+            Add Entry
+        </button>
+
+    </div>
+
+    <br>
 
     <table class="table">
         <thead>
@@ -47,17 +90,63 @@ else
 
 @code {
     private List<TimesheetEntry>? entries;
+    private bool _showAddEntryForm = false;
 
+    //New entry
+    private TimesheetEntry newEntry = new TimesheetEntry
+    {
+        Date = DateTime.Today
+    };
     protected override async Task OnInitializedAsync()
     {
+
         try
         {
             entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
         }
         catch (Exception ex)
         {
-           
+
         }
     }
+
+    private async Task ToggleAddEntryDisplay()
+    {
+
+        _showAddEntryForm = !_showAddEntryForm;
+    }
+
+    private async Task AddEntry()
+    {
+
+        try
+        {
+
+            var response = await Http.PostAsJsonAsync("api/timesheet", newEntry);
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+                // Reset form
+                newEntry = new TimesheetEntry
+                {
+                    Date = DateTime.Today
+                };
+                StateHasChanged();
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                await JS.InvokeVoidAsync("console.error", "🛑 Failed to add entry:", error);
+            }
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("console.error", "🛑 Exception:", ex.Message);
+        }
+    }
+
+
 
 }
