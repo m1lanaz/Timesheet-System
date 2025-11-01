@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Timesheet.Components.Models;
 using Timesheet.Components.Services;
 
-namespace Timesheet.Controllers
+namespace Timesheet.Components.Controllers
 {
     [Route("api/timesheet")]
     [ApiController]

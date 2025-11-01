@@ -7,6 +7,21 @@ namespace Timesheet.Components.Services
     {
         private readonly ConcurrentDictionary<string, TimesheetEntry> _entries = new();
 
+        public TimesheetService() {
+
+            var initialEntry = new TimesheetEntry
+            {
+                ID = Guid.NewGuid(),
+                UserID = 1,
+                ProjectID = 101,
+                Hours = 7,
+                Date = DateTime.Today,
+                Description = "Initial test entry"
+            };
+
+            _entries.TryAdd(initialEntry.ID.ToString(), initialEntry);
+
+        }
 
         public AddEntryResult AddEntry(TimesheetEntry entry)
         {
