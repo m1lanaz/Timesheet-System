@@ -50,19 +50,22 @@ namespace Timesheet.Components.Controllers
                 return BadRequest("Issue with deleting entry");
             }
         }
-
         [HttpPut("{id}")]
         public ActionResult UpdateEntry(string id, TimesheetEntry updatedData)
         {
-            TimesheetEntry updatedTimesheetEntry = _service.UpdateEntry(id, updatedData);
-        
-            if( updatedTimesheetEntry == null)
+            var result = _service.UpdateEntry(id, updatedData);
+
+            if (!result.Success)
             {
-                return BadRequest("Issue with updating entry");
+                if (result.Message == "Entry not found.")
+                    return NotFound(result.Message);
+
+                return BadRequest(result.Message);
             }
 
-            return Ok(updatedTimesheetEntry);
+            return Ok(result.Entry);
         }
+
 
     }
 }

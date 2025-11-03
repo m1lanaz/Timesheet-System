@@ -51,6 +51,10 @@ else
 
         <br />
 
+        <p style="color:red">@error</p>
+
+        <br />
+
         <button class="btn btn-primary" @onclick="AddEntry">
             Add Entry
         </button>
@@ -74,15 +78,46 @@ else
         <tbody>
             @foreach (var entry in entries)
             {
-                <tr>
-                    <td>@entry.Date.ToShortDateString()</td>
-                    <td>@entry.UserID</td>
-                    <td>@entry.ProjectID</td>
-                    <td>@entry.Hours</td>
-                    <td>@entry.Description</td>
-                    <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
-                </tr>
+                if (editingEntry != null && editingEntry.ID == entry.ID)
+                {
+                    <!--Editing mode-->
+                    <tr>
+                        <td><input type="date" @bind="editingEntry.Date" class="form-control" /></td>
+                        <td><input type="number" @bind="editingEntry.UserID" class="form-control" /></td>
+                        <td><input type="number" @bind="editingEntry.ProjectID" class="form-control" /></td>
+                        <td><input type="number" step=".01" @bind="editingEntry.Hours" class="form-control" /></td>
+                        <td><input type="text" @bind="editingEntry.Description" class="form-control" /></td>
+                        <td>
+                            <button class="btn btn-success btn-sm" @onclick="() => SaveEntry(entry.ID)">Save</button>
+                            <button class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" disabled>Delete</button>
+                        </td>
+                    </tr>
+
+                    @if (rowErrors.ContainsKey(entry.ID))
+                    {
+                        <tr>
+                            <td colspan="7">
+                                <p style="color: red; margin: 0;">@rowErrors[entry.ID]</p>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <!--Normal display-->
+                    <tr>
+                        <td>@entry.Date.ToShortDateString()</td>
+                        <td>@entry.UserID</td>
+                        <td>@entry.ProjectID</td>
+                        <td>@entry.Hours</td>
+                        <td>@entry.Description</td>
+                        <td><button class="btn btn-primary btn-sm" @onclick="() => EditEntry(entry)">Edit</button></td>
+                        <td><button class="btn btn-danger btn-sm" @onclick="() => DeleteEntry(entry.ID)">Delete</button></td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -91,12 +126,32 @@ else
 @code {
     private List<TimesheetEntry>? entries;
     private bool _showAddEntryForm = false;
+    private TimesheetEntry editingEntry;
+    private Dictionary<Guid, string> rowErrors = new();
+
 
     //New entry
     private TimesheetEntry newEntry = new TimesheetEntry
     {
         Date = DateTime.Today
     };
+
+    private void EditEntry(TimesheetEntry entry)
+    {
+        // Make a copy to avoid modifying the list until save
+        editingEntry = new TimesheetEntry
+        {
+            ID = entry.ID,
+            Date = entry.Date,
+            UserID = entry.UserID,
+            ProjectID = entry.ProjectID,
+            Hours = entry.Hours,
+            Description = entry.Description
+        };
+    }
+
+    string error;
+
     protected override async Task OnInitializedAsync()
     {
 
@@ -122,6 +177,9 @@ else
         try
         {
 
+            error = string.Empty;
+            StateHasChanged(); 
+
             var response = await Http.PostAsJsonAsync("api/timesheet", newEntry);
 
 
@@ -137,16 +195,66 @@ else
             }
             else
             {
-                var error = await response.Content.ReadAsStringAsync();
-                await JS.InvokeVoidAsync("console.error", "🛑 Failed to add entry:", error);
+                error = await response.Content.ReadAsStringAsync();
+                await JS.InvokeVoidAsync("console.error", "Failed to add entry:", error);
             }
         }
         catch (Exception ex)
         {
-            await JS.InvokeVoidAsync("console.error", "🛑 Exception:", ex.Message);
         }
     }
 
 
+    private async Task DeleteEntry(Guid ID)
+    {
+
+        var response = await Http.DeleteAsync($"api/timesheet/{ID}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+            StateHasChanged();
+        }
+        else
+        {
+            var errorMsg = await response.Content.ReadAsStringAsync();
+            await JS.InvokeVoidAsync("console.error", $"Failed to delete entry: {errorMsg}");
+        }
+    }
+
+    private async Task SaveEntry(Guid id)
+    {
+        if (editingEntry == null) return;
+
+        rowErrors.Remove(id);
+        StateHasChanged();
+
+        var response = await Http.PutAsJsonAsync($"api/timesheet/{id}", editingEntry);
+
+        if (response.IsSuccessStatusCode)
+        {
+            rowErrors.Clear();
+
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+            editingEntry = null;
+            StateHasChanged();
+        }
+        else
+        {
+            var err = await response.Content.ReadAsStringAsync();
+
+            rowErrors[id] = err;
+
+            await JS.InvokeVoidAsync("console.error", $"Failed to update entry: {err}");
+            StateHasChanged();
+        }
+    }
+
+
+
+    private void CancelEdit()
+    {
+        editingEntry = null;
+    }
 
 }

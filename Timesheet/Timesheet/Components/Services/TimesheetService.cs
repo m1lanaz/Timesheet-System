@@ -7,21 +7,6 @@ namespace Timesheet.Components.Services
     {
         private readonly ConcurrentDictionary<string, TimesheetEntry> _entries = new();
 
-        public TimesheetService() {
-
-            var initialEntry = new TimesheetEntry
-            {
-                ID = Guid.NewGuid(),
-                UserID = 1,
-                ProjectID = 101,
-                Hours = 7,
-                Date = DateTime.Today,
-                Description = "Initial test entry"
-            };
-
-            _entries.TryAdd(initialEntry.ID.ToString(), initialEntry);
-
-        }
 
         public AddEntryResult AddEntry(TimesheetEntry entry)
         {
@@ -75,10 +60,30 @@ namespace Timesheet.Components.Services
         }
 
 
-        public TimesheetEntry? UpdateEntry(string id, TimesheetEntry updatedValues)
+        public UpdateEntryResult UpdateEntry(string id, TimesheetEntry updatedValues)
         {
-            if (_entries.TryGetValue(id, out var existingEntry))
+            if (!_entries.TryGetValue(id, out var existingEntry))
             {
+                return new UpdateEntryResult { Success = false, Message = "Entry not found." };
+            }
+
+                //Check if this would create a duplicate
+                //Duplicate check
+                bool anyDuplicates = _entries.Values.Any(e =>
+                    e.ID != existingEntry.ID && 
+                    e.UserID == updatedValues.UserID &&
+                    e.ProjectID == updatedValues.ProjectID &&
+                    e.Date.Date == updatedValues.Date.Date);
+
+                if (anyDuplicates)
+                {
+                    return new UpdateEntryResult
+                    {
+                        Success = false,
+                        Message = "Duplicate entry exists for this user, project, and date."
+                    };
+                }
+
                 if (updatedValues.ProjectID != default)
                 {
                     existingEntry.ProjectID = updatedValues.ProjectID;
@@ -101,11 +106,8 @@ namespace Timesheet.Components.Services
 
                 _entries[id.ToString()] = existingEntry;
 
-                return existingEntry;
-            }
-
-            return null;
-        }
+            return new UpdateEntryResult { Success = true, Entry = existingEntry };
+        }        
 
     }
 }

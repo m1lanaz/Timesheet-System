@@ -18,7 +18,7 @@ namespace Timesheet.Test.Services
         [Fact]
         public void UpdateExistingEntry()
         {
-            TimesheetEntry entry = new TimesheetEntry
+            var entry = new TimesheetEntry
             {
                 UserID = 123,
                 ProjectID = 123,
@@ -30,15 +30,16 @@ namespace Timesheet.Test.Services
 
             var updatedValues = new TimesheetEntry
             {
-                ProjectID = 867,   
-                Hours = 10      
+                ProjectID = 867,
+                Hours = 10
             };
 
+            UpdateEntryResult result = _service.UpdateEntry(added.Entry.ID.ToString(), updatedValues);
 
-            TimesheetEntry updated = _service.UpdateEntry(added.Entry.ID.ToString(), updatedValues);
-
-            Assert.Equal(867, updated.ProjectID);
-            Assert.Equal(10, updated.Hours);
+            Assert.True(result.Success);
+            Assert.NotNull(result.Entry);
+            Assert.Equal(867, result.Entry.ProjectID);
+            Assert.Equal(10, result.Entry.Hours);
         }
 
         //Update a non-existent entry
@@ -51,9 +52,11 @@ namespace Timesheet.Test.Services
                 Hours = 10
             };
 
-            TimesheetEntry updated = _service.UpdateEntry("12234", updatedValues);
+            UpdateEntryResult result = _service.UpdateEntry("12234", updatedValues);
 
-            Assert.Null(updated);
+            Assert.False(result.Success);
+            Assert.Equal("Entry not found.", result.Message);
+            Assert.Null(result.Entry);
         }
 
         //Passes if updates the correct entry
@@ -85,10 +88,10 @@ namespace Timesheet.Test.Services
 
             };
 
-            foreach (TimesheetEntry entry in entries)
-            {
-                _service.AddEntry(entry);
-            }
+            foreach (var e in entries)
+                _service.AddEntry(e);
+
+            var targetId = _service.GetAllEntries()[0].ID.ToString();
 
             var updatedValues = new TimesheetEntry
             {
@@ -96,12 +99,54 @@ namespace Timesheet.Test.Services
                 Hours = 10
             };
 
+            UpdateEntryResult result = _service.UpdateEntry(targetId, updatedValues);
 
-            TimesheetEntry updated = _service.UpdateEntry(entries[0].ID.ToString(), updatedValues);
+            Assert.True(result.Success);
+            Assert.NotNull(result.Entry);
+            Assert.Equal(867, result.Entry.ProjectID);
+            Assert.Equal(10, result.Entry.Hours);
 
-            Assert.Equal(867, entries[0].ProjectID);
-            Assert.Equal(10, entries[0].Hours);
+            //Checks only one entry was updated
+            var all = _service.GetAllEntries();
+            Assert.Single(all.Where(e => e.ProjectID == 867));
 
+        }
+
+
+        //Passes if detects duplicate and prevents it
+        [Fact]
+        public void UpdateCausingDuplicateFails()
+        {
+            var entry1 = new TimesheetEntry
+            {
+                UserID = 1,
+                ProjectID = 10,
+                Date = DateTime.Today,
+                Hours = 8
+            };
+
+            var entry2 = new TimesheetEntry
+            {
+                UserID = 1,
+                ProjectID = 20,
+                Date = DateTime.Today,
+                Hours = 6
+            };
+
+            _service.AddEntry(entry1);
+            _service.AddEntry(entry2);
+
+            var updatedValues = new TimesheetEntry
+            {
+                UserID = 1,
+                ProjectID = 10,
+                Date = DateTime.Today
+            };
+
+            var result = _service.UpdateEntry(entry2.ID.ToString(), updatedValues);
+
+            Assert.False(result.Success);
+            Assert.Equal("Duplicate entry exists for this user, project, and date.", result.Message);
         }
     }
 }
