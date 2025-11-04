@@ -47,8 +47,6 @@ namespace Timesheet.Components.Services
                     Message = "Failed adding entry"
                 };
             }
-
-
         }
 
         //Delete entry from timesheet entries
@@ -60,8 +58,56 @@ namespace Timesheet.Components.Services
         //Get all entries from timesheet entries
         public List<TimesheetEntry> GetAllEntries() 
         { 
-            return _entries.Values.ToList();
+            return _entries.Values.ToList(); 
         }
+
+        //Get all entries for a given user and week
+        public WeeklyUserEntriesResponse GetEntriesForUserAndWeek(int userId, DateTime weekStart)
+        {
+            var weekEnd = weekStart.AddDays(7);
+
+            //First check that this userID exists
+            var userEntries = _entries.Values
+                .Where(e => e.UserID == userId)
+                .ToList();
+
+            if (!userEntries.Any())
+            {
+                return new WeeklyUserEntriesResponse
+                {
+                    Success = false,
+                    Message = $"UserID {userId} not found."
+                };
+            }
+
+            // Get entries for this user within that week
+            var entries = _entries.Values
+                .Where(e => e.UserID == userId && e.Date >= weekStart && e.Date <= weekEnd)
+                .OrderBy(e => e.Date)
+                .ToList();
+
+            var response = new WeeklyUserEntriesResponse();
+
+            //If no entries are found
+            if (!entries.Any())
+            {
+                return new WeeklyUserEntriesResponse
+                {
+                    Success = false,
+                    Message = $"No entries found for user {userId} in week starting {weekStart:dd/MM/yyyy}."
+                };
+            }
+
+            //If entries are found
+            return new WeeklyUserEntriesResponse
+            {
+                Success = true,
+                Message = $"Found {entries.Count} entries for user {userId} between {weekStart:dd/MM/yyyy} and {weekEnd.AddDays(-1):dd/MM/yyyy}.",
+                Entries = entries
+
+            };
+        }
+
 
         //Update entry from timesheet entries
         public UpdateEntryResult UpdateEntry(string id, TimesheetEntry updatedValues)

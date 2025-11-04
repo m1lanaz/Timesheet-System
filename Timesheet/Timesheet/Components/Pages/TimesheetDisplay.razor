@@ -50,7 +50,6 @@ else
         <button id="add-entry-btn" class="btn btn-primary" @onclick="AddEntry">Add Entry</button>
     </div>
 
-    <br />
 
     //Weekly project hours by user dropdown
     <h3 class="dropdown-header" @onclick="ToggleWeeklyHoursDisplay">
@@ -104,6 +103,36 @@ else
                     </table>
                 </div>
             }
+        </div>
+    }
+
+    //Filter by week and userId
+    <h3 class="dropdown-header" @onclick="ToggleFilterDisplay">
+        Filter Timesheet Entries by User & Week
+        <span class="dropdown">@(_showFilter ? "▲" : "▼")</span>
+    </h3>
+
+    @if (_showFilter)
+    {
+        <div id="filter-form" class="form-card">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="filter-week-start">Week start:</label>
+                    <input id="filter-week-start" type="date" @bind="filterWeekStart" class="form-input" />
+                </div>
+                <div class="form-group">
+                    <label for="filter-userid">UserID:</label>
+                    <input id="filter-userid" type="number" @bind="filterUserId" class="form-input" />
+                </div>
+            </div>
+
+            <p id="filter-error" class="error-text">@filterError</p>
+            <div style="display:flex;gap:10px;">
+                <button class="btn btn-primary" @onclick="FilterEntriesByWeek">Filter</button>
+                <button id="reset-filter-btn" class="btn btn-secondary" @onclick="ResetFilter">
+                    Reset
+                </button>
+            </div>
         </div>
     }
 
@@ -178,7 +207,7 @@ else
         }
     }
 
-    //Add entry 
+    //---Add entry code
     private TimesheetEntry newEntry = new() { Date = DateTime.Today };
     private string addEntryError = string.Empty;
 
@@ -211,7 +240,7 @@ else
         }
     }
 
-    //Weekly hours calculation
+    //---Weekly hours calculation code
     private int selectedUserId;
     private DateTime weekStartDate = DateTime.Today;
     private List<ProjectHoursResult>? weeklyResults;
@@ -249,7 +278,67 @@ else
         }
     }
 
-    //Edit entry
+    //---List all entries for a given user and week
+    private int filterUserId;
+    private DateTime filterWeekStart = DateTime.Today;
+    private string filterError = string.Empty;
+    private List<TimesheetEntry>? weeklyEntries;
+
+    //toggles filter display
+    private bool _showFilter = false;
+    private void ToggleFilterDisplay() => _showFilter = !_showFilter;
+
+    private async Task FilterEntriesByWeek()
+    {
+        filterError = string.Empty;
+
+        try
+        {
+            // Use the correct filter variables from the filter form
+            var url = $"api/timesheet/weeklyentries?userId={filterUserId}&weekStart={filterWeekStart:yyyy-MM-dd}";
+            var response = await Http.GetAsync(url);
+
+            var data = await response.Content.ReadFromJsonAsync<WeeklyUserEntriesResponse>();
+
+            if (data == null)
+            {
+                filterError = "No data returned from server.";
+                return;
+            }
+
+            if (data.Success)
+            {
+                // Update the visible entries table
+                entries = data.Entries;
+            }
+            else
+            {
+                filterError = data.Message ?? "No entries found.";
+                entries = new List<TimesheetEntry>();
+            }
+        }
+        catch (Exception ex)
+        {
+            filterError = $"Error fetching entries: {ex.Message}";
+        }
+    }
+
+
+    //Reset button to show all the entries
+    private async Task ResetFilter()
+    {
+        filterError = string.Empty;
+        try
+        {
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+        }
+        catch
+        {
+            filterError = "Failed to reload entries.";
+        }
+    }
+
+    //---Edit entry code
     private TimesheetEntry? editingEntry;
     private readonly Dictionary<Guid, string> rowErrors = new();
 
@@ -288,7 +377,7 @@ else
         }
     }
 
-    //Delete entry
+    //---Delete entry code
     private async Task DeleteEntry(Guid id)
     {
         var response = await Http.DeleteAsync($"api/timesheet/{id}");

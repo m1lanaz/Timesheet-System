@@ -24,6 +24,20 @@ namespace Timesheet.Components.Controllers
             return _service.GetAllEntries();
         }
 
+        //Get all entries for a given user and week
+        [HttpGet("weeklyentries")]
+        public ActionResult<WeeklyUserEntriesResponse> GetEntriesForUserAndWeek(int userId, DateTime weekStart)
+        {
+            var result = _service.GetEntriesForUserAndWeek(userId, weekStart);
+
+            return Ok(new WeeklyUserEntriesResponse
+            {
+                Success = result.Success,
+                Message = result.Message,
+                Entries = result.Entries ?? new List<TimesheetEntry>()
+            });
+        }
+
         //Add entry
         [HttpPost]
         public ActionResult AddEntry(TimesheetEntry entry)

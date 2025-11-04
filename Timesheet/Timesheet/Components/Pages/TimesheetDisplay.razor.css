@@ -11,7 +11,6 @@
     font-weight: 500;
     color: #2c3e50;
     cursor: pointer;
-    margin-bottom: 0.5rem;
 }
 
 .dropdown-header:hover {
@@ -138,4 +137,22 @@
 
 .table tr:hover {
     background-color: #f9f9f9;
+}
+
+#filter-form {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+#reset-filter-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+#reset-filter-btn:hover {
+    background-color: #5a6268;
 }
