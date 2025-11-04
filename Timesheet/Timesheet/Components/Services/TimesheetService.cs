@@ -8,6 +8,7 @@ namespace Timesheet.Components.Services
         private readonly ConcurrentDictionary<string, TimesheetEntry> _entries = new();
 
 
+        //Add entry to timesheet entries
         public AddEntryResult AddEntry(TimesheetEntry entry)
         {
             //Duplicate check
@@ -28,6 +29,7 @@ namespace Timesheet.Components.Services
             entry.ID = Guid.NewGuid();
             bool added = _entries.TryAdd(entry.ID.ToString(), entry);
 
+            //return entry if successful add 
             if (added)
             {
                 return new AddEntryResult
@@ -38,6 +40,7 @@ namespace Timesheet.Components.Services
             }
             else
             {
+                //return message if unsuccessful add
                 return new AddEntryResult
                 {
                     Success = false,
@@ -48,18 +51,19 @@ namespace Timesheet.Components.Services
 
         }
 
+        //Delete entry from timesheet entries
         public bool DeleteEntry(string id)
         {
             return _entries.TryRemove(id, out _);
         }
 
-
+        //Get all entries from timesheet entries
         public List<TimesheetEntry> GetAllEntries() 
         { 
             return _entries.Values.ToList();
         }
 
-
+        //Update entry from timesheet entries
         public UpdateEntryResult UpdateEntry(string id, TimesheetEntry updatedValues)
         {
             if (!_entries.TryGetValue(id, out var existingEntry))
@@ -68,14 +72,14 @@ namespace Timesheet.Components.Services
             }
 
                 //Check if this would create a duplicate
-                //Duplicate check
                 bool anyDuplicates = _entries.Values.Any(e =>
                     e.ID != existingEntry.ID && 
                     e.UserID == updatedValues.UserID &&
                     e.ProjectID == updatedValues.ProjectID &&
                     e.Date.Date == updatedValues.Date.Date);
 
-                if (anyDuplicates)
+            //If theres a potential duplicate found then return message
+               if (anyDuplicates)
                 {
                     return new UpdateEntryResult
                     {
@@ -84,7 +88,8 @@ namespace Timesheet.Components.Services
                     };
                 }
 
-                if (updatedValues.ProjectID != default)
+            //Assigning new values
+            if (updatedValues.ProjectID != default)
                 {
                     existingEntry.ProjectID = updatedValues.ProjectID;
                 }
@@ -106,8 +111,62 @@ namespace Timesheet.Components.Services
 
                 _entries[id.ToString()] = existingEntry;
 
+            //If successful then return entry
             return new UpdateEntryResult { Success = true, Entry = existingEntry };
-        }        
+        }
 
+
+        //Return all projectIds with total hours for a given userId in a week
+        public WeeklyProjectHoursResponse GetWeeklyProjectHoursByUser(int userId, DateTime weekStart)
+        {
+            var weekEnd = weekStart.AddDays(7);
+
+            //First check that this userID exists
+            var userEntries = _entries.Values
+                .Where(e => e.UserID == userId)
+                .ToList();
+
+            if (!userEntries.Any())
+            {
+                return new WeeklyProjectHoursResponse
+                {
+                    Success = false,
+                    Message = $"UserID {userId} not found."
+                };
+            }
+
+            //Second check if the user exists but they have no projectids assigned for the selected week
+
+            var weeklyEntries = userEntries
+               .Where(e => e.Date >= weekStart && e.Date < weekEnd)
+               .ToList();
+
+            if (!weeklyEntries.Any())
+            {
+                return new WeeklyProjectHoursResponse
+                {
+                    Success = false,
+                    Message = $"No projects assigned to user {userId} in this timeframe."
+                };
+            }
+
+            //Then group by project and total hours
+
+            var results = weeklyEntries
+                .GroupBy(e => e.ProjectID)
+                .Select(g => new ProjectHoursResult
+                {
+                    ProjectID = g.Key,
+                    TotalHours = g.Sum(e => e.Hours)
+                })
+                .ToList();
+
+            return new WeeklyProjectHoursResponse
+            {
+                Success = true,
+                Results = results
+            };
+
+        }
     }
 }

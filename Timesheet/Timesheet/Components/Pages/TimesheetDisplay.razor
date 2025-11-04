@@ -1,0 +1,306 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JS
+@page "/"
+@using global::Timesheet.Components.Models;
+@rendermode InteractiveServer
+@layout Timesheet.Components.Layout.TimesheetLayout
+
+<PageTitle>Timesheet</PageTitle>
+
+<h1>Timesheet</h1>
+
+@if (entries == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    //Add entry dropdown
+    <h3 class="dropdown-header" @onclick="ToggleAddEntryDisplay">
+        Add entry <span class="dropdown">@(_showAddEntryForm ? "▲" : "▼")</span>
+    </h3>
+
+    <div id="add-entry-form" class="form-card" style="@(_showAddEntryForm ? "display:block;" : "display:none;")">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="entry-date">Date:</label>
+                <input id="entry-date" type="date" @bind="newEntry.Date" class="form-input" />
+            </div>
+            <div class="form-group">
+                <label for="entry-userid">UserID:</label>
+                <input id="entry-userid" type="number" @bind="newEntry.UserID" class="form-input" />
+            </div>
+            <div class="form-group">
+                <label for="entry-projectid">ProjectID:</label>
+                <input id="entry-projectid" type="number" @bind="newEntry.ProjectID" class="form-input" />
+            </div>
+            <div class="form-group">
+                <label for="entry-hours">Hours:</label>
+                <input id="entry-hours" type="number" min="0" step=".1" @bind="newEntry.Hours" class="form-input" />
+            </div>
+            <div class="form-group">
+                <label for="entry-desc">Description (Optional):</label>
+                <input id="entry-desc" type="text" @bind="newEntry.Description" class="form-input" />
+            </div>
+        </div>
+
+        <p id="add-entry-error" class="error-text">@addEntryError</p>
+
+        <button id="add-entry-btn" class="btn btn-primary" @onclick="AddEntry">Add Entry</button>
+    </div>
+
+    <br />
+
+    //Weekly project hours by user dropdown
+    <h3 class="dropdown-header" @onclick="ToggleWeeklyHoursDisplay">
+        Weekly project hours by User <span class="dropdown">@(_showWeeklyHours ? "▲" : "▼")</span>
+    </h3>
+
+    @if (_showWeeklyHours)
+    {
+        <div id="weekly-hours-section" class="form-card">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="week-start">Week start:</label>
+                    <input id="week-start" type="date" @bind="weekStartDate" class="form-input" />
+                </div>
+
+                <div class="form-group">
+                    <label for="weekly-userid">UserID:</label>
+                    <input id="weekly-userid" type="number" @bind="selectedUserId" class="form-input" />
+                </div>
+            </div>
+
+            <p id="weekly-error" class="error-text">@weeklyError</p>
+            <br />
+            <button id="get-weekly-hours-btn" class="btn btn-primary" @onclick="GetWeeklyHours">
+                Get project hours
+            </button>
+
+            <br />
+
+            @if (weeklyResults != null)
+            {
+                <div id="weekly-results">
+                    <h4>Results for user @selectedUserId (Week of @weekStartDate.ToShortDateString())</h4>
+                    <table id="weekly-hours-table" class="table">
+                        <thead>
+                            <tr>
+                                <th>ProjectID</th>
+                                <th>Total Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var r in weeklyResults)
+                            {
+                                <tr>
+                                    <td>@r.ProjectID</td>
+                                    <td>@r.TotalHours</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    }
+
+    //Existing timesheet
+    <table id="timesheet-table" class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>UserID</th>
+                <th>ProjectID</th>
+                <th>Hours</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in entries)
+            {
+                if (editingEntry != null && editingEntry.ID == entry.ID)
+                {
+                    <tr>
+                        <td><input type="date" @bind="editingEntry.Date" class="form-input" /></td>
+                        <td><input type="number" @bind="editingEntry.UserID" class="form-input" /></td>
+                        <td><input type="number" @bind="editingEntry.ProjectID" class="form-input" /></td>
+                        <td><input type="number" step=".01" @bind="editingEntry.Hours" class="form-input" /></td>
+                        <td><input type="text" @bind="editingEntry.Description" class="form-input" /></td>
+                        <td>
+                            <button class="btn btn-success btn-sm" @onclick="() => SaveEntry(entry.ID)">Save</button>
+                            <button class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" disabled>Delete</button>
+                        </td>
+                    </tr>
+
+                    @if (rowErrors.ContainsKey(entry.ID))
+                    {
+                        <tr>
+                            <td colspan="7"><p class="error-text small-text">@rowErrors[entry.ID]</p></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>@entry.Date.ToShortDateString()</td>
+                        <td>@entry.UserID</td>
+                        <td>@entry.ProjectID</td>
+                        <td>@entry.Hours</td>
+                        <td>@entry.Description</td>
+                        <td><button class="btn btn-primary btn-sm" @onclick="() => EditEntry(entry)">Edit</button></td>
+                        <td><button class="btn btn-danger btn-sm" @onclick="() => DeleteEntry(entry.ID)">Delete</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<TimesheetEntry>? entries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    //Add entry 
+    private TimesheetEntry newEntry = new() { Date = DateTime.Today };
+    private string addEntryError = string.Empty;
+
+    //Toggle add entry form display
+    private void ToggleAddEntryDisplay() => _showAddEntryForm = !_showAddEntryForm;
+    private bool _showAddEntryForm = false;
+
+    private async Task AddEntry()
+    {
+        try
+        {
+            addEntryError = string.Empty;
+            var response = await Http.PostAsJsonAsync("api/timesheet", newEntry);
+
+            if (response.IsSuccessStatusCode)
+            {
+                //Refresh list after successfully adding entry
+                entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+                //Reset the form
+                newEntry = new TimesheetEntry { Date = DateTime.Today };
+            }
+            else
+            {
+                addEntryError = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            addEntryError = ex.Message;
+        }
+    }
+
+    //Weekly hours calculation
+    private int selectedUserId;
+    private DateTime weekStartDate = DateTime.Today;
+    private List<ProjectHoursResult>? weeklyResults;
+    private string? weeklyError;
+
+    //Toggle get weekly hours form display
+    private void ToggleWeeklyHoursDisplay() => _showWeeklyHours = !_showWeeklyHours;
+    private bool _showWeeklyHours = false;
+
+    private async Task GetWeeklyHours()
+    {
+        weeklyError = string.Empty;
+        weeklyResults = null;
+
+        try
+        {
+            var url = $"api/timesheet/weeklyhours?userId={selectedUserId}&weekStart={weekStartDate:yyyy-MM-dd}";
+            var response = await Http.GetAsync(url);
+
+            var data = await response.Content.ReadFromJsonAsync<WeeklyProjectHoursResponse>();
+
+            if (response.IsSuccessStatusCode && data?.Success == true)
+            {
+                //Display results
+                weeklyResults = data.Results;
+            }
+            else
+            {
+                weeklyError = data?.Message ?? $"Error: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            weeklyError = "Error: " + ex.Message;
+        }
+    }
+
+    //Edit entry
+    private TimesheetEntry? editingEntry;
+    private readonly Dictionary<Guid, string> rowErrors = new();
+
+    private void EditEntry(TimesheetEntry entry)
+    {
+        editingEntry = new TimesheetEntry
+        {
+            ID = entry.ID,
+            Date = entry.Date,
+            UserID = entry.UserID,
+            ProjectID = entry.ProjectID,
+            Hours = entry.Hours,
+            Description = entry.Description
+        };
+    }
+    //Cancel editng entry
+    private void CancelEdit() => editingEntry = null;
+
+    //Save the changes to the edited entry
+    private async Task SaveEntry(Guid id)
+    {
+        if (editingEntry == null) return;
+
+        rowErrors.Remove(id);
+        var response = await Http.PutAsJsonAsync($"api/timesheet/{id}", editingEntry);
+
+        if (response.IsSuccessStatusCode)
+        {
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+            editingEntry = null;
+        }
+        else
+        {
+            var err = await response.Content.ReadAsStringAsync();
+            rowErrors[id] = err;
+        }
+    }
+
+    //Delete entry
+    private async Task DeleteEntry(Guid id)
+    {
+        var response = await Http.DeleteAsync($"api/timesheet/{id}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            entries = await Http.GetFromJsonAsync<List<TimesheetEntry>>("api/timesheet");
+        }
+        else
+        {
+            var errorMsg = await response.Content.ReadAsStringAsync();
+            await JS.InvokeVoidAsync("console.error", $"Failed to delete entry: {errorMsg}");
+        }
+    }
+}

@@ -17,12 +17,14 @@ namespace Timesheet.Components.Controllers
             _service = service;
         }
 
+        //Get all entries
         [HttpGet]
         public ActionResult<List<TimesheetEntry>> GetAllEntries()
         {
             return _service.GetAllEntries();
         }
 
+        //Add entry
         [HttpPost]
         public ActionResult AddEntry(TimesheetEntry entry)
         {
@@ -36,6 +38,7 @@ namespace Timesheet.Components.Controllers
             return Ok(result.Entry);
         }
 
+        //Delete entry
         [HttpDelete("{id}")]
         public ActionResult DeleteEntry(string id) 
         {
@@ -50,6 +53,8 @@ namespace Timesheet.Components.Controllers
                 return BadRequest("Issue with deleting entry");
             }
         }
+
+        //update entry
         [HttpPut("{id}")]
         public ActionResult UpdateEntry(string id, TimesheetEntry updatedData)
         {
@@ -66,6 +71,19 @@ namespace Timesheet.Components.Controllers
             return Ok(result.Entry);
         }
 
+        //Get the weekly hours for a set week and userId
+        [HttpGet("weeklyhours")]
+        public ActionResult<WeeklyProjectHoursResponse> GetWeeklyProjectHoursByUser(int userId, DateTime weekStart)
+        {
+            var result = _service.GetWeeklyProjectHoursByUser(userId, weekStart);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
 
     }
 }
